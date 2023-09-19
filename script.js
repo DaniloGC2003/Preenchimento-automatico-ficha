@@ -1,3 +1,6 @@
+let p1 = document.querySelector('#weima');
+p1.innerHTML = 'weima';
+
 let horarios = {
     inicio: '',
     fim: ''
@@ -39,16 +42,19 @@ function retrieveDate()
 }
 
 function printTable() {
-    let current_date = new Date(horarios_datas.data_inicio.getTime())
+    console.log('in print table');
+    let current_date = new Date(horarios_datas.data_inicio.getTime());
     console.log(horarios_datas.data_inicio);
-    console.log(current_date.getFullYear());
-    console.log(horarios_datas.data_fim.getFullYear());
+    console.log(horarios_datas.data_fim);
+    console.log('current_date:' + current_date);
+    let i = 0;
     while (current_date.toDateString() != horarios_datas.data_fim.toDateString())
     {
-        let i = 0;
+
         console.log(i);
-        const p_horario = document.createElement('p');//create p element
-        p_horario.appendChild(document.createTextNode(convertDateOBJtoDMYstring(current_date)));
+        let p_horario = document.createElement('p');//create p element
+        p_horario.innerHTML = convertDateOBJtoDMYstring(current_date);
+        //p_horario.appendChild(document.createTextNode(convertDateOBJtoDMYstring(current_date)));
 
         const horarios = document.querySelector('#horarios');
         horarios.appendChild(p_horario);
@@ -60,12 +66,16 @@ function printTable() {
 
 function convertDateOBJtoDMYstring(date)
 {
+    console.log('oh' + date.getDate());
     let newString = '';
-    newString += toString(date.getDate());
+    newString += date.getDate();
     newString += '/';
-    newString += toString(date.getMonth() + 1);
+    newString += date.getMonth() + 1;
     newString += '/';
-    newString += toString(date.getFullYear());
+    newString += date.getFullYear();
+
+    console.log('olha so' + newString);
+    return newString;
 }
 
 function getDateNumbers(date) 
