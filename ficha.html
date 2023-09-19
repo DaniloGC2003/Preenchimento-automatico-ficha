@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <div id="title">
+            <h2>Preenchimento Automático Ficha de Atendimento</h2>
+            <h3>UTFPR</h3>
+
+            <script src="script.js"></script>
+
+            <fieldset>
+                <div>
+                    <form>
+                        <div>
+                            <label for="data_inicial">Essa ficha é referente à data de: </label>
+                            <input type="date" id="data_inicial">
+                        </div>
+    
+                        <div>
+                            <label for="data_final">a: </label>
+                            <input type="date" id="data_final">
+                        </div>
+    
+                        <div>
+                            <p>Preencha a seguir os horários em que você atua durante a semana. Caso não atue neste dia, deixe em branco.</p>
+                        </div>
+
+                        <div id="segunda">
+                            <h3>Segunda-feira:</h3>
+                            <div>
+                                <label for="horario_inicial_segunda">Horário de início</label>
+                                <input type="time" id="horario_inicial_segunda">
+                            </div>
+    
+                            <div>
+                                <label for="horario_final_segunda">Horário de fim</label>
+                                <input type="time" id="horario_final_segunda">
+                            </div>
+                        </div>
+
+                        <div id="terca">
+                            <h3>Terça-feira:</h3>
+                            <div>
+                                <label for="horario_inicial_terca">Horário de início</label>
+                                <input type="time" id="horario_inicial_terca">
+                            </div>
+    
+                            <div>
+                                <label for="horario_final_terca">Horário de fim</label>
+                                <input type="time" id="horario_final_terca">
+                            </div>
+                        </div>
+                        
+                    </form>
+
+                    
+                </div>
+            </fieldset>
+
+            <div id="button">
+                <button id="update" onclick="execTable()">Gerar horários</button>
+            </div>
+            <div id="horarios">
+
+            </div>
+       </div>
+    </main>
+</body>
+</html>
