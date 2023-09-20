@@ -1,5 +1,3 @@
-let p1 = document.querySelector('#weima');
-p1.innerHTML = 'weima';
 
 let horarios = {
     inicio: '',
@@ -131,6 +129,10 @@ function convertDateToDMY(date)
 }
 
 function execTable() {
+
+    const p1 = document.querySelector('#weima');
+    console.log(p1);
+    p1.innerHTML = 'oieee \n osh weima';
     retrieveDate();
 
     printTable();
