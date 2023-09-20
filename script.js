@@ -1,7 +1,7 @@
 
 let horarios = {
-    inicio: '',
-    fim: ''
+    segunda: [],
+    terca: []
 }
 
 let horarios_datas = {
@@ -12,25 +12,25 @@ let horarios_datas = {
 function retrieveDate()
 {
     const data_inicial = document.querySelector('#data_inicial').value;//date object. Format YYYY-MM-DD
-    console.log(data_inicial);
+   //console.log(data_inicial);
     const data_inicial_DMY = convertDateToDMY(data_inicial);
-    console.log(data_inicial_DMY);
+    //console.log(data_inicial_DMY);
 
 
     let DateValues_inicial = getDateNumbers(data_inicial);
     horarios_datas.data_inicio.setFullYear(DateValues_inicial.year, DateValues_inicial.month - 1, DateValues_inicial.day);//months indexed from 0
-    console.log(horarios_datas.data_inicio);
+    //console.log(horarios_datas.data_inicio);
 
 
     const data_final = document.querySelector('#data_final').value;//date object. Format YYYY-MM-DD
-    console.log(data_final);
+    //console.log(data_final);
     const data_final_DMY = convertDateToDMY(data_final);
-    console.log(data_final_DMY);
+   // console.log(data_final_DMY);
 
 
     let DateValues_final = getDateNumbers(data_final);
     horarios_datas.data_fim.setFullYear(DateValues_final.year, DateValues_final.month - 1, DateValues_final.day);//months indexed from 0
-    console.log(horarios_datas.data_fim);
+    //console.log(horarios_datas.data_fim);
 
 /*     const p_horario = document.createElement('p');//create p element
     p_horario.appendChild(document.createTextNode(data_DMY));
@@ -40,22 +40,28 @@ function retrieveDate()
 }
 
 function printTable() {
-    console.log('in print table');
+    //console.log('in print table');
     let current_date = new Date(horarios_datas.data_inicio.getTime());
-    console.log(horarios_datas.data_inicio);
-    console.log(horarios_datas.data_fim);
-    console.log('current_date:' + current_date);
+    //console.log(horarios_datas.data_inicio);
+    //console.log(horarios_datas.data_fim);
+    //console.log('current_date:' + current_date);
+
+    let data_fimPlusOne = horarios_datas.data_fim;
+    data_fimPlusOne.setDate(data_fimPlusOne.getDate() + 1);//this allows the loop to iterate through the last day as well
     let i = 0;
-    while (current_date.toDateString() != horarios_datas.data_fim.toDateString())
+    while (current_date.toDateString() != data_fimPlusOne.toDateString())
     {
 
         console.log(i);
         let p_horario = document.createElement('p');//create p element
-        p_horario.innerHTML = convertDateOBJtoDMYstring(current_date);
-        //p_horario.appendChild(document.createTextNode(convertDateOBJtoDMYstring(current_date)));
+        horarioString = convertDateOBJtoDMYstring(current_date);
+        p_horario.innerHTML = horarioString;
 
         const horarios = document.querySelector('#horarios');
         horarios.appendChild(p_horario);
+
+        const textAreaHorarios = document.querySelector('#text-area');
+        textAreaHorarios.value += horarioString + ';\n';
 
         current_date.setDate(current_date.getDate() + 1);
         i++;
@@ -64,7 +70,7 @@ function printTable() {
 
 function convertDateOBJtoDMYstring(date)
 {
-    console.log('oh' + date.getDate());
+    //console.log('oh' + date.getDate());
     let newString = '';
     newString += date.getDate();
     newString += '/';
@@ -72,7 +78,7 @@ function convertDateOBJtoDMYstring(date)
     newString += '/';
     newString += date.getFullYear();
 
-    console.log('olha so' + newString);
+    //console.log('olha so' + newString);
     return newString;
 }
 
@@ -128,12 +134,19 @@ function convertDateToDMY(date)
     return newDateString;
 }
 
-function execTable() {
+function retrieveTime() 
+{
+    const horarioSegunda = document.querySelector('#horario_inicial_segunda');
+    console.log(horarioSegunda.value);
 
-    const p1 = document.querySelector('#weima');
-    console.log(p1);
-    p1.innerHTML = 'oieee \n osh weima';
+    //create date object
+    //add to arr
+}
+
+function execTable() {
+    retrieveTime();
     retrieveDate();
+
 
     printTable();
 }
