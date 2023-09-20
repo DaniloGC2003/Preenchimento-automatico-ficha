@@ -134,13 +134,46 @@ function convertDateToDMY(date)
     return newDateString;
 }
 
+function convertTimeStringTonumbers (time) 
+{
+    console.log('converting str to nmm');
+    console.log(time);
+    let timeNumbers = [];
+    let timeStr = '';
+
+    timeStr += time.charAt(0);
+    timeStr += time.charAt(1);
+    
+    timeNumbers.push(parseInt(timeStr));
+    console.log(timeStr);
+    
+    timeStr = '';
+    timeStr += time.charAt(3);
+    timeStr += time.charAt(4);
+    
+    timeNumbers.push(parseInt(timeStr));
+    console.log(timeNumbers);
+
+    
+    //console.log(timeNumbers)
+
+    return timeNumbers;
+}
+
 function retrieveTime() 
 {
     const horarioSegunda = document.querySelector('#horario_inicial_segunda');
     console.log(horarioSegunda.value);
 
     //create date object
+    let timeNumbers = convertTimeStringTonumbers(horarioSegunda.value);
+    console.log(timeNumbers);
+    let horarioInicioSegunda = new Date();
+    console.log(horarioInicioSegunda);
+    horarioInicioSegunda.setHours(timeNumbers[0], timeNumbers[1]);
+    console.log(horarioInicioSegunda);
     //add to arr
+    horarios.segunda.push(horarioInicioSegunda);
 }
 
 function execTable() {
