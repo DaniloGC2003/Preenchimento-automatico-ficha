@@ -24,3 +24,7 @@ fieldset {
     border-radius: 20px;
     padding: 10px;
 }
+
+.horarios_semana {
+    display: none;
+}
