@@ -190,3 +190,5 @@ function execTable() {
 
     printTable();
 }
+
+//QUANTIDADE DE VEZES QUE VOCE ATUOU NO DIA

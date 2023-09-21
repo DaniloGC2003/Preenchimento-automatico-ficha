@@ -1,7 +1,26 @@
+@keyframes changeBack {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 0% 100%;
+    }
+}
+
 body {
-    background-color: aquamarine;
+    background: linear-gradient(aquamarine, rgb(255, 150, 0));
+    background-size: 100vw 400vh;
+
+    animation: changeBack 5s ease infinite alternate;
 }
 
 p {
     color: black;
+}
+
+fieldset {
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 10px;
 }
