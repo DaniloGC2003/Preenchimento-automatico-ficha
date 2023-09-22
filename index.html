@@ -40,7 +40,7 @@
                             <div>
                                 <label for="num_horarios_segunda">Quantidade de vezes que você atua neste dia: </label>
                                 <input type="number" id="num_horarios_segunda" min="0" max="3" value="0"
-                                    onclick="showTimeForms()">
+                                    onclick="showTimeForms('segunda')">
                             </div>
                             <div class="horarios_semana" id="horarios_segunda1">
                                 <div>
@@ -81,14 +81,87 @@
                         <div id="terca">
                             <h3>Terça-feira:</h3>
                             <div>
-                                <label for="horario_inicial_terca">Horário de início</label>
-                                <input type="time" id="horario_inicial_terca">
+                                <label for="num_horarios_terca">Quantidade de vezes que você atua neste dia: </label>
+                                <input type="number" id="num_horarios_terca" min="0" max="3" value="0"
+                                    onclick="showTimeForms('terca')">
+                            </div>
+                            <div class="horarios_semana" id="horarios_terca1">
+                                <div>
+                                    <label for="horario_inicial_terca_1">Horário de início 1: </label>
+                                    <input type="time" id="horario_inicial_terca_1" value="00:00">
+                                </div>
+
+                                <div>
+                                    <label for="horario_final_terca_1">Horário de fim 1: </label>
+                                    <input type="time" id="horario_final_terca_1" value="01:00">
+                                </div>
+                            </div>
+                            <div class="horarios_semana" id="horarios_terca2">
+                                <div>
+                                    <label for="horario_inicial_terca_2">Horário de início 2: </label>
+                                    <input type="time" id="horario_inicial_terca_2" value="04:00">
+                                </div>
+
+                                <div>
+                                    <label for="horario_final_terca_2">Horário de fim 2: </label>
+                                    <input type="time" id="horario_final_terca_2" value="05:00">
+                                </div>
+                            </div>
+                            <div class="horarios_semana" id="horarios_terca3">
+                                <div>
+                                    <label for="horario_inicial_terca_3">Horário de início 3: </label>
+                                    <input type="time" id="horario_inicial_terca_3" value="00:00">
+                                </div>
+
+                                <div>
+                                    <label for="horario_final_terca_3">Horário de fim 3: </label>
+                                    <input type="time" id="horario_final_terca_3">
+                                </div>
                             </div>
 
+                        </div>
+
+                        <div id="quarta">
+                            <h3>Terça-feira:</h3>
                             <div>
-                                <label for="horario_final_terca">Horário de fim</label>
-                                <input type="time" id="horario_final_terca">
+                                <label for="num_horarios_quarta">Quantidade de vezes que você atua neste dia: </label>
+                                <input type="number" id="num_horarios_quarta" min="0" max="3" value="0"
+                                    onclick="showTimeForms('quarta')">
                             </div>
+                            <div class="horarios_semana" id="horarios_quarta1">
+                                <div>
+                                    <label for="horario_inicial_quarta_1">Horário de início 1: </label>
+                                    <input type="time" id="horario_inicial_quarta_1" value="00:00">
+                                </div>
+
+                                <div>
+                                    <label for="horario_final_quarta_1">Horário de fim 1: </label>
+                                    <input type="time" id="horario_final_quarta_1" value="01:00">
+                                </div>
+                            </div>
+                            <div class="horarios_semana" id="horarios_quarta2">
+                                <div>
+                                    <label for="horario_inicial_quarta_2">Horário de início 2: </label>
+                                    <input type="time" id="horario_inicial_quarta_2" value="04:00">
+                                </div>
+
+                                <div>
+                                    <label for="horario_final_quarta_2">Horário de fim 2: </label>
+                                    <input type="time" id="horario_final_quarta_2" value="05:00">
+                                </div>
+                            </div>
+                            <div class="horarios_semana" id="horarios_quarta3">
+                                <div>
+                                    <label for="horario_inicial_quarta_3">Horário de início 3: </label>
+                                    <input type="time" id="horario_inicial_quarta_3" value="00:00">
+                                </div>
+
+                                <div>
+                                    <label for="horario_final_quarta_3">Horário de fim 3: </label>
+                                    <input type="time" id="horario_final_quarta_3">
+                                </div>
+                            </div>
+
                         </div>
 
                     </form>
@@ -104,7 +177,7 @@
 
             </div>
             <div id="horarios-textarea">
-                <textarea id="text-area" cols="50" rows="50"></textarea>
+                <textarea id="text-area" cols="100" rows="50"></textarea>
             </div>
         </div>
     </main>

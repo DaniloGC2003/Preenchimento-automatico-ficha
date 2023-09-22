@@ -58,16 +58,28 @@ function printTable() {
 
         textAreaHorarios.value += dataString + '; ';//add day
 
-        if (current_date.getDay() == 1) {//monday
-            let num_horarios = document.getElementById("num_horarios_segunda").value;
-            let j = 0;
-            for (j = 0; j < num_horarios; j++) {
-                textAreaHorarios.value += getStringInicioFimHorario(1, j) + '; ';
-            }
+        /*  if (current_date.getDay() == 1) {//monday
+             let num_horarios = document.getElementById("num_horarios_segunda").value;
+             let j = 0;
+             for (j = 0; j < num_horarios; j++) {
+                 textAreaHorarios.value += getStringInicioFimHorario(1, j) + '; ';
+             }
+         } */
+        let num_horarios;
+        switch (current_date.getDay()) {
+            case 1:
+                num_horarios = document.getElementById("num_horarios_segunda").value;
+            case 2:
+                num_horarios = document.getElementById("num_horarios_terca").value;
+                console.log('oioiii');
+                console.log(num_horarios);
 
-            //bota data
-            //textAreaHorarios.value += getStringInicioFimHorario(1, 0) + '\n';
         }
+        let j = 0;
+        for (j = 0; j < num_horarios; j++) {
+            textAreaHorarios.value += getStringInicioFimHorario(current_date.getDay(), j) + '; ';
+        }
+
 
         textAreaHorarios.value += '\n';
 
@@ -193,7 +205,7 @@ function converttimeObjToStr(time) {
     return tempString;
 }
 
-function retrieveTime() {
+function retrieveTime() {//fazer p todos os dias
     let inicio_horarioSegundaID = '';
     let fim_horarioSegundaID = '';
     let num_horarios = document.getElementById("num_horarios_segunda").value;
@@ -238,6 +250,7 @@ function resetGlobalVariables() {
 
 function execTable() {
 
+    resetGlobalVariables();
     retrieveTime();
     retrieveDate();
 
@@ -246,12 +259,12 @@ function execTable() {
     printTable();
 }
 
-function showTimeForms() {
-    let num_horarios = document.getElementById("num_horarios_segunda").value;
+function showTimeForms(diaSemana) {
+    let num_horarios = document.getElementById("num_horarios_" + diaSemana).value;
 
-    let horarios1 = document.getElementById("horarios_segunda1");
-    let horarios2 = document.getElementById("horarios_segunda2");
-    let horarios3 = document.getElementById("horarios_segunda3");
+    let horarios1 = document.getElementById("horarios_" + diaSemana + '1');
+    let horarios2 = document.getElementById("horarios_" + diaSemana + '2');
+    let horarios3 = document.getElementById("horarios_" + diaSemana + '3');
 
     //console.log(num_horarios);
     if (num_horarios == 0) {
