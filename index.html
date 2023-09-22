@@ -35,6 +35,49 @@
                                 deixe em branco.</p>
                         </div>
 
+                        <div id="domingo">
+                            <h3>Domingo:</h3>
+                            <div>
+                                <label for="num_horarios_domingo">Quantidade de vezes que você atua neste dia: </label>
+                                <input type="number" id="num_horarios_domingo" min="0" max="3" value="0"
+                                    onclick="showTimeForms('domingo')">
+                            </div>
+                            <div class="horarios_semana" id="horarios_domingo1">
+                                <div>
+                                    <label for="horario_inicial_domingo_1">Horário de início 1: </label>
+                                    <input type="time" id="horario_inicial_domingo_1" value="00:00">
+                                </div>
+
+                                <div>
+                                    <label for="horario_final_domingo_1">Horário de fim 1: </label>
+                                    <input type="time" id="horario_final_domingo_1" value="01:00">
+                                </div>
+                            </div>
+                            <div class="horarios_semana" id="horarios_domingo2">
+                                <div>
+                                    <label for="horario_inicial_domingo_2">Horário de início 2: </label>
+                                    <input type="time" id="horario_inicial_domingo_2" value="04:00">
+                                </div>
+
+                                <div>
+                                    <label for="horario_final_domingo_2">Horário de fim 2: </label>
+                                    <input type="time" id="horario_final_domingo_2" value="05:00">
+                                </div>
+                            </div>
+                            <div class="horarios_semana" id="horarios_domingo3">
+                                <div>
+                                    <label for="horario_inicial_domingo_3">Horário de início 3: </label>
+                                    <input type="time" id="horario_inicial_domingo_3" value="00:00">
+                                </div>
+
+                                <div>
+                                    <label for="horario_final_domingo_3">Horário de fim 3: </label>
+                                    <input type="time" id="horario_final_domingo_3">
+                                </div>
+                            </div>
+
+                        </div>
+
                         <div id="segunda">
                             <h3>Segunda-feira:</h3>
                             <div>
@@ -88,23 +131,23 @@
                             <div class="horarios_semana" id="horarios_terca1">
                                 <div>
                                     <label for="horario_inicial_terca_1">Horário de início 1: </label>
-                                    <input type="time" id="horario_inicial_terca_1" value="00:00">
+                                    <input type="time" id="horario_inicial_terca_1" value="12:00">
                                 </div>
 
                                 <div>
                                     <label for="horario_final_terca_1">Horário de fim 1: </label>
-                                    <input type="time" id="horario_final_terca_1" value="01:00">
+                                    <input type="time" id="horario_final_terca_1" value="12:30">
                                 </div>
                             </div>
                             <div class="horarios_semana" id="horarios_terca2">
                                 <div>
                                     <label for="horario_inicial_terca_2">Horário de início 2: </label>
-                                    <input type="time" id="horario_inicial_terca_2" value="04:00">
+                                    <input type="time" id="horario_inicial_terca_2" value="15:00">
                                 </div>
 
                                 <div>
                                     <label for="horario_final_terca_2">Horário de fim 2: </label>
-                                    <input type="time" id="horario_final_terca_2" value="05:00">
+                                    <input type="time" id="horario_final_terca_2" value="17:00">
                                 </div>
                             </div>
                             <div class="horarios_semana" id="horarios_terca3">
@@ -122,7 +165,7 @@
                         </div>
 
                         <div id="quarta">
-                            <h3>Terça-feira:</h3>
+                            <h3>Quarta-feira:</h3>
                             <div>
                                 <label for="num_horarios_quarta">Quantidade de vezes que você atua neste dia: </label>
                                 <input type="number" id="num_horarios_quarta" min="0" max="3" value="0"
@@ -159,6 +202,135 @@
                                 <div>
                                     <label for="horario_final_quarta_3">Horário de fim 3: </label>
                                     <input type="time" id="horario_final_quarta_3">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="quinta">
+                            <h3>Quinta-feira:</h3>
+                            <div>
+                                <label for="num_horarios_quinta">Quantidade de vezes que você atua neste dia: </label>
+                                <input type="number" id="num_horarios_quinta" min="0" max="3" value="0"
+                                    onclick="showTimeForms('quinta')">
+                            </div>
+                            <div class="horarios_semana" id="horarios_quinta1">
+                                <div>
+                                    <label for="horario_inicial_quinta_1">Horário de início 1: </label>
+                                    <input type="time" id="horario_inicial_quinta_1" value="00:00">
+                                </div>
+
+                                <div>
+                                    <label for="horario_final_quinta_1">Horário de fim 1: </label>
+                                    <input type="time" id="horario_final_quinta_1" value="01:00">
+                                </div>
+                            </div>
+                            <div class="horarios_semana" id="horarios_quinta2">
+                                <div>
+                                    <label for="horario_inicial_quinta_2">Horário de início 2: </label>
+                                    <input type="time" id="horario_inicial_quinta_2" value="04:00">
+                                </div>
+
+                                <div>
+                                    <label for="horario_final_quinta_2">Horário de fim 2: </label>
+                                    <input type="time" id="horario_final_quinta_2" value="05:00">
+                                </div>
+                            </div>
+                            <div class="horarios_semana" id="horarios_quinta3">
+                                <div>
+                                    <label for="horario_inicial_quinta_3">Horário de início 3: </label>
+                                    <input type="time" id="horario_inicial_quinta_3" value="00:00">
+                                </div>
+
+                                <div>
+                                    <label for="horario_final_quinta_3">Horário de fim 3: </label>
+                                    <input type="time" id="horario_final_quinta_3">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="sexta">
+                            <h3>Sexta-feira:</h3>
+                            <div>
+                                <label for="num_horarios_sexta">Quantidade de vezes que você atua neste dia: </label>
+                                <input type="number" id="num_horarios_sexta" min="0" max="3" value="0"
+                                    onclick="showTimeForms('sexta')">
+                            </div>
+                            <div class="horarios_semana" id="horarios_sexta1">
+                                <div>
+                                    <label for="horario_inicial_sexta_1">Horário de início 1: </label>
+                                    <input type="time" id="horario_inicial_sexta_1" value="00:00">
+                                </div>
+
+                                <div>
+                                    <label for="horario_final_sexta_1">Horário de fim 1: </label>
+                                    <input type="time" id="horario_final_sexta_1" value="01:00">
+                                </div>
+                            </div>
+                            <div class="horarios_semana" id="horarios_sexta2">
+                                <div>
+                                    <label for="horario_inicial_sexta_2">Horário de início 2: </label>
+                                    <input type="time" id="horario_inicial_sexta_2" value="04:00">
+                                </div>
+
+                                <div>
+                                    <label for="horario_final_sexta_2">Horário de fim 2: </label>
+                                    <input type="time" id="horario_final_sexta_2" value="05:00">
+                                </div>
+                            </div>
+                            <div class="horarios_semana" id="horarios_sexta3">
+                                <div>
+                                    <label for="horario_inicial_sexta_3">Horário de início 3: </label>
+                                    <input type="time" id="horario_inicial_sexta_3" value="00:00">
+                                </div>
+
+                                <div>
+                                    <label for="horario_final_sexta_3">Horário de fim 3: </label>
+                                    <input type="time" id="horario_final_sexta_3">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="sabado">
+                            <h3>Sábado:</h3>
+                            <div>
+                                <label for="num_horarios_sabado">Quantidade de vezes que você atua neste dia: </label>
+                                <input type="number" id="num_horarios_sabado" min="0" max="3" value="0"
+                                    onclick="showTimeForms('sabado')">
+                            </div>
+                            <div class="horarios_semana" id="horarios_sabado1">
+                                <div>
+                                    <label for="horario_inicial_sabado_1">Horário de início 1: </label>
+                                    <input type="time" id="horario_inicial_sabado_1" value="00:00">
+                                </div>
+
+                                <div>
+                                    <label for="horario_final_sabado_1">Horário de fim 1: </label>
+                                    <input type="time" id="horario_final_sabado_1" value="01:00">
+                                </div>
+                            </div>
+                            <div class="horarios_semana" id="horarios_sabado2">
+                                <div>
+                                    <label for="horario_inicial_sabado_2">Horário de início 2: </label>
+                                    <input type="time" id="horario_inicial_sabado_2" value="04:00">
+                                </div>
+
+                                <div>
+                                    <label for="horario_final_sabado_2">Horário de fim 2: </label>
+                                    <input type="time" id="horario_final_sabado_2" value="05:00">
+                                </div>
+                            </div>
+                            <div class="horarios_semana" id="horarios_sabado3">
+                                <div>
+                                    <label for="horario_inicial_sabado_3">Horário de início 3: </label>
+                                    <input type="time" id="horario_inicial_sabado_3" value="00:00">
+                                </div>
+
+                                <div>
+                                    <label for="horario_final_sabado_3">Horário de fim 3: </label>
+                                    <input type="time" id="horario_final_sabado_3">
                                 </div>
                             </div>
 

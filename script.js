@@ -67,18 +67,52 @@ function printTable() {
          } */
         let num_horarios;
         switch (current_date.getDay()) {
+            case 0:
+                num_horarios = document.getElementById("num_horarios_domingo").value;
+                break;
             case 1:
                 num_horarios = document.getElementById("num_horarios_segunda").value;
+                break;
             case 2:
                 num_horarios = document.getElementById("num_horarios_terca").value;
-                console.log('oioiii');
-                console.log(num_horarios);
+                break;
+            case 3:
+                num_horarios = document.getElementById("num_horarios_quarta").value;
+                break;
+            case 4:
+                num_horarios = document.getElementById("num_horarios_quinta").value;
+                break;
+            case 5:
+                num_horarios = document.getElementById("num_horarios_sexta").value;
+                break;
+            case 6:
+                num_horarios = document.getElementById("num_horarios_sabado").value;
+                break;
 
         }
-        let j = 0;
-        for (j = 0; j < num_horarios; j++) {
-            textAreaHorarios.value += getStringInicioFimHorario(current_date.getDay(), j) + '; ';
+        if (num_horarios == 0)
+        {
+            if (current_date.getDay() == 0)//doming
+            {
+                textAreaHorarios.value += 'DOMINGO';
+            }
+            else
+            {
+                textAreaHorarios.value += 'SEM ATUAÇÃO';   
+            }
         }
+        else
+        {
+            let j = 0;
+            for (j = 0; j < num_horarios; j++) {
+                textAreaHorarios.value += getStringInicioFimHorario(current_date.getDay(), j);
+                if (num_horarios - j >= 2)
+                {
+                    textAreaHorarios.value += '; ';
+                }
+            }
+        }
+        
 
 
         textAreaHorarios.value += '\n';
@@ -205,8 +239,90 @@ function converttimeObjToStr(time) {
     return tempString;
 }
 
-function retrieveTime() {//fazer p todos os dias
-    let inicio_horarioSegundaID = '';
+function retrieveTime() {
+    
+    for (let i = 0; i < 7; i++)
+    {
+        let num_horarios;
+        let inicio_horarioID = '';
+        let fim_horarioID = '';
+
+        switch(i)
+        {
+            case 0:
+                num_horarios = document.getElementById("num_horarios_domingo").value;
+                inicio_horarioID = '#horario_inicial_domingo_0';
+                fim_horarioID = '#horario_final_domingo_0';
+                break;
+            case 1:
+                num_horarios = document.getElementById("num_horarios_segunda").value;
+                inicio_horarioID = '#horario_inicial_segunda_0';
+                fim_horarioID = '#horario_final_segunda_0';
+                break;
+            case 2:
+                num_horarios = document.getElementById("num_horarios_terca").value;
+                inicio_horarioID = '#horario_inicial_terca_0';
+                fim_horarioID = '#horario_final_terca_0';
+                break;
+            case 3:
+                num_horarios = document.getElementById("num_horarios_quarta").value;
+                inicio_horarioID = '#horario_inicial_quarta_0';
+                fim_horarioID = '#horario_final_quarta_0';
+                break;
+            case 4:
+                num_horarios = document.getElementById("num_horarios_quinta").value;
+                inicio_horarioID = '#horario_inicial_quinta_0';
+                fim_horarioID = '#horario_final_quinta_0';
+                break;
+            case 5:
+                num_horarios = document.getElementById("num_horarios_sexta").value;
+                inicio_horarioID = '#horario_inicial_sexta_0';
+                fim_horarioID = '#horario_final_sexta_0';
+                break;
+            case 6:
+                num_horarios = document.getElementById("num_horarios_sabado").value;
+                inicio_horarioID = '#horario_inicial_sabado_0';
+                fim_horarioID = '#horario_final_sabado_0';
+                break;
+            default:
+                break;
+        }
+
+        for (let j = 0; j < num_horarios; j++)
+        {
+            console.log('comeco');
+
+            inicio_horarioID = inicio_horarioID.slice(0, -1);
+            inicio_horarioID += j + 1;
+            fim_horarioID = fim_horarioID.slice(0, -1);
+            fim_horarioID += j + 1;
+
+            let horarios_inicioFim = [];
+
+            let horarioInicioElem = document.querySelector(inicio_horarioID);
+            let timeNumbersInicio = convertTimeStringTonumbers(horarioInicioElem.value);//eh um vetor
+            let horarioInicio = new Date();
+            horarioInicio.setHours(timeNumbersInicio[0], timeNumbersInicio[1]);//cria obj data com as horas do vetor
+
+            let horarioFimElem = document.querySelector(fim_horarioID);
+            let timeNumbersFim = convertTimeStringTonumbers(horarioFimElem.value);
+            let horarioFim = new Date();
+            horarioFim.setHours(timeNumbersFim[0], timeNumbersFim[1]);
+
+            horarios_inicioFim.push(horarioInicio);
+            horarios_inicioFim.push(horarioFim);
+            //console.log(horarios_inicioFim);
+
+            horarios[Object.keys(horarios)[i]].push(horarios_inicioFim);
+
+            
+            /* console.log('horaraior');
+            console.log(horarios.domingo); */
+
+        }
+        
+    }
+    /* let inicio_horarioSegundaID = '';
     let fim_horarioSegundaID = '';
     let num_horarios = document.getElementById("num_horarios_segunda").value;
     for (let i = 0; i < num_horarios; i++) {
@@ -235,7 +351,7 @@ function retrieveTime() {//fazer p todos os dias
         horarios.segunda.push(horarios_inicioFim);
     }
 
-    console.log('horarios' + horarios.segunda);
+    console.log('horarios' + horarios.segunda); */
 }
 
 function resetGlobalVariables() {
@@ -252,6 +368,7 @@ function execTable() {
 
     resetGlobalVariables();
     retrieveTime();
+    
     retrieveDate();
 
     //apagar o que ja tava na text area
