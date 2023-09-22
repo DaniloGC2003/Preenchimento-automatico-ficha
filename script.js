@@ -55,24 +55,31 @@ function printTable() {
     while (current_date.toDateString() != data_fimPlusOne.toDateString()) {
 
         let dataString = convertDateOBJtoDMYstring(current_date);
-    
-        textAreaHorarios.value += dataString + ';';
+
+        textAreaHorarios.value += dataString + '; ';//add day
+
         if (current_date.getDay() == 1) {//monday
+            let num_horarios = document.getElementById("num_horarios_segunda").value;
+            let j = 0;
+            for (j = 0; j < num_horarios; j++) {
+                textAreaHorarios.value += getStringInicioFimHorario(1, j) + '; ';
+            }
+
             //bota data
-            textAreaHorarios.value += getStringInicioFimHorario(1, 0) + '\n';
+            //textAreaHorarios.value += getStringInicioFimHorario(1, 0) + '\n';
         }
-        
+
+        textAreaHorarios.value += '\n';
 
         current_date.setDate(current_date.getDate() + 1);
         i++;
     }
 }
 
-function getStringInicioFimHorario (diaSemana, indexHorario)
-{
+function getStringInicioFimHorario(diaSemana, indexHorario) {
     let stringData = '';
-    console.log(horarios[Object.keys(horarios)[1]]);
-    stringData += converttimeObjToStr(horarios[Object.keys(horarios)[1]][indexHorario][0]) + ' - ' + converttimeObjToStr(horarios[Object.keys(horarios)[1]][indexHorario][1]);
+    console.log(horarios[Object.keys(horarios)[diaSemana]]);
+    stringData += converttimeObjToStr(horarios[Object.keys(horarios)[diaSemana]][indexHorario][0]) + ' - ' + converttimeObjToStr(horarios[Object.keys(horarios)[diaSemana]][indexHorario][1]);
 
     return stringData;
 }
@@ -164,9 +171,22 @@ function convertTimeStringTonumbers(time) {
 
 function converttimeObjToStr(time) {
     let tempString = '';
-    tempString += time.getHours();
+    let hours = time.getHours();
+    if (hours < 10) {
+        tempString += '0' + hours;
+    }
+    else {
+        tempString += hours;
+    }
     tempString += 'h';
-    tempString += time.getMinutes();
+    let minutes = time.getMinutes();
+    if (minutes < 10) {
+        tempString += '0' + minutes;
+    }
+    else {
+        tempString += minutes;
+    }
+
 
     console.log(tempString);
 
@@ -177,8 +197,7 @@ function retrieveTime() {
     let inicio_horarioSegundaID = '';
     let fim_horarioSegundaID = '';
     let num_horarios = document.getElementById("num_horarios_segunda").value;
-    for (let i = 0; i < num_horarios; i++)
-    {
+    for (let i = 0; i < num_horarios; i++) {
         let horarios_inicioFim = [];
 
         inicio_horarioSegundaID = '#horario_inicial_segunda_';
@@ -207,8 +226,7 @@ function retrieveTime() {
     console.log('horarios' + horarios.segunda);
 }
 
-function resetGlobalVariables()
-{
+function resetGlobalVariables() {
     horarios.segunda = [];
     horarios.terca = [];
     horarios.quarta = [];
@@ -228,35 +246,30 @@ function execTable() {
     printTable();
 }
 
-function showTimeForms()
-{
+function showTimeForms() {
     let num_horarios = document.getElementById("num_horarios_segunda").value;
 
     let horarios1 = document.getElementById("horarios_segunda1");
     let horarios2 = document.getElementById("horarios_segunda2");
     let horarios3 = document.getElementById("horarios_segunda3");
-    
+
     //console.log(num_horarios);
-    if (num_horarios == 0)
-    {
+    if (num_horarios == 0) {
         horarios1.setAttribute("style", "display:none;");
         horarios2.setAttribute("style", "display:none;");
         horarios3.setAttribute("style", "display:none;");
     }
-    else if (num_horarios == 1)
-    {
+    else if (num_horarios == 1) {
         horarios1.setAttribute("style", "display:block;");
         horarios2.setAttribute("style", "display:none;");
         horarios3.setAttribute("style", "display:none;");
     }
-    else if (num_horarios == 2)
-    {
+    else if (num_horarios == 2) {
         horarios1.setAttribute("style", "display:block;");
         horarios2.setAttribute("style", "display:block;");
         horarios3.setAttribute("style", "display:none;");
     }
-    else if (num_horarios == 3)
-    {
+    else if (num_horarios == 3) {
         horarios1.setAttribute("style", "display:block;");
         horarios2.setAttribute("style", "display:block;");
         horarios3.setAttribute("style", "display:block;");
