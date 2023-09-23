@@ -15,35 +15,25 @@ let horarios_datas = {
 }
 
 function retrieveDate() {
+    /* preenche objeto horarios_datas com as datas contidas no form */
     const data_inicial = document.querySelector('#data_inicial').value;//date object. Format YYYY-MM-DD
-    //console.log(data_inicial);
     const data_inicial_DMY = convertDateToDMY(data_inicial);
-    //console.log(data_inicial_DMY);
 
 
     let DateValues_inicial = getDateNumbers(data_inicial);
     horarios_datas.data_inicio.setFullYear(DateValues_inicial.year, DateValues_inicial.month - 1, DateValues_inicial.day);//months indexed from 0
-    //console.log(horarios_datas.data_inicio);
 
 
     const data_final = document.querySelector('#data_final').value;//date object. Format YYYY-MM-DD
-    //console.log(data_final);
     const data_final_DMY = convertDateToDMY(data_final);
-    // console.log(data_final_DMY);
 
 
     let DateValues_final = getDateNumbers(data_final);
     horarios_datas.data_fim.setFullYear(DateValues_final.year, DateValues_final.month - 1, DateValues_final.day);//months indexed from 0
-    //console.log(horarios_datas.data_fim);
-
-    /*     const p_horario = document.createElement('p');//create p element
-        p_horario.appendChild(document.createTextNode(data_DMY));
-    
-        const horarios = document.querySelector('#horarios');
-        horarios.appendChild(p_horario); */
 }
 
 function printTable() {
+    /* imprime horarios na textArea */
     const textAreaHorarios = document.querySelector('#text-area');
     textAreaHorarios.value = '';
     let current_date = new Date(horarios_datas.data_inicio.getTime());
@@ -56,15 +46,8 @@ function printTable() {
 
         let dataString = convertDateOBJtoDMYstring(current_date);
 
-        textAreaHorarios.value += dataString + '; ';//add day
+        textAreaHorarios.value += dataString + '; ';//add day of the year
 
-        /*  if (current_date.getDay() == 1) {//monday
-             let num_horarios = document.getElementById("num_horarios_segunda").value;
-             let j = 0;
-             for (j = 0; j < num_horarios; j++) {
-                 textAreaHorarios.value += getStringInicioFimHorario(1, j) + '; ';
-             }
-         } */
         let num_horarios;
         switch (current_date.getDay()) {
             case 0:
@@ -88,11 +71,11 @@ function printTable() {
             case 6:
                 num_horarios = document.getElementById("num_horarios_sabado").value;
                 break;
-
         }
-        if (num_horarios == 0)
+
+        if (num_horarios == 0)//nao atua nesse dia
         {
-            if (current_date.getDay() == 0)//doming
+            if (current_date.getDay() == 0)//domingo
             {
                 textAreaHorarios.value += 'DOMINGO';
             }
@@ -104,17 +87,15 @@ function printTable() {
         else
         {
             let j = 0;
-            for (j = 0; j < num_horarios; j++) {
+            for (j = 0; j < num_horarios; j++) {//coloca horarios
                 textAreaHorarios.value += getStringInicioFimHorario(current_date.getDay(), j);
-                if (num_horarios - j >= 2)
+                if (num_horarios - j >= 2)//nao printa ; depois do ultimo horario
                 {
                     textAreaHorarios.value += '; ';
                 }
             }
         }
         
-
-
         textAreaHorarios.value += '\n';
 
         current_date.setDate(current_date.getDate() + 1);
@@ -123,6 +104,8 @@ function printTable() {
 }
 
 function getStringInicioFimHorario(diaSemana, indexHorario) {
+    /* input: dia da semana representado por numero de 0 a 6; numero que indica qual dos 3 horarios deve ser retornado
+    output: string que contem horario de inicio e horario de fim */
     let stringData = '';
     console.log(horarios[Object.keys(horarios)[diaSemana]]);
     stringData += converttimeObjToStr(horarios[Object.keys(horarios)[diaSemana]][indexHorario][0]) + ' - ' + converttimeObjToStr(horarios[Object.keys(horarios)[diaSemana]][indexHorario][1]);
@@ -131,7 +114,8 @@ function getStringInicioFimHorario(diaSemana, indexHorario) {
 }
 
 function convertDateOBJtoDMYstring(date) {
-    //console.log('oh' + date.getDate());
+    /* input: objeto de Data do JS
+    output: string de data em formato DD/MM//YYYY */
     let newString = '';
     newString += date.getDate();
     newString += '/';
@@ -139,11 +123,12 @@ function convertDateOBJtoDMYstring(date) {
     newString += '/';
     newString += date.getFullYear();
 
-    //console.log('olha so' + newString);
     return newString;
 }
 
-function getDateNumbers(date) {//input: stringdate in format YYYY-MM-DD; output: date array in format YYYY-MM-DD
+function getDateNumbers(date) {
+    /* input: string de data em formato YYYY-MM-DD; 
+    output: vetor de data em formato YYYY-MM-DD */
     let DateValues = {
         year: 0,
         month: 0,
@@ -173,6 +158,8 @@ function getDateNumbers(date) {//input: stringdate in format YYYY-MM-DD; output:
 }
 
 function convertDateToDMY(date) {
+    /* input: objeto de data do JS
+    output: string de data em DD/MM/YYYY */
     let newDateString = '';
 
     for (let i = 0; i < 2; i++) {
@@ -191,8 +178,8 @@ function convertDateToDMY(date) {
 }
 
 function convertTimeStringTonumbers(time) {
-    //console.log('converting str to nmm');
-    //console.log(time);
+    /* inout: string de horario 
+    output: vetor contendo horas e minutos do horario */
     let timeNumbers = [];
     let timeStr = '';
 
@@ -200,22 +187,19 @@ function convertTimeStringTonumbers(time) {
     timeStr += time.charAt(1);
 
     timeNumbers.push(parseInt(timeStr));
-    //console.log(timeStr);
 
     timeStr = '';
     timeStr += time.charAt(3);
     timeStr += time.charAt(4);
 
     timeNumbers.push(parseInt(timeStr));
-    //console.log(timeNumbers);
-
-
-    //console.log(timeNumbers)
 
     return timeNumbers;
 }
 
 function converttimeObjToStr(time) {
+    /* input: objeto de data do JS
+    output: string de horario */
     let tempString = '';
     let hours = time.getHours();
     if (hours < 10) {
@@ -240,7 +224,7 @@ function converttimeObjToStr(time) {
 }
 
 function retrieveTime() {
-    
+    /* preenche objeto horarios com os horarios contidos no form */
     for (let i = 0; i < 7; i++)
     {
         let num_horarios;
@@ -311,50 +295,15 @@ function retrieveTime() {
 
             horarios_inicioFim.push(horarioInicio);
             horarios_inicioFim.push(horarioFim);
-            //console.log(horarios_inicioFim);
 
             horarios[Object.keys(horarios)[i]].push(horarios_inicioFim);
-
-            
-            /* console.log('horaraior');
-            console.log(horarios.domingo); */
-
         }
         
     }
-    /* let inicio_horarioSegundaID = '';
-    let fim_horarioSegundaID = '';
-    let num_horarios = document.getElementById("num_horarios_segunda").value;
-    for (let i = 0; i < num_horarios; i++) {
-        let horarios_inicioFim = [];
-
-        inicio_horarioSegundaID = '#horario_inicial_segunda_';
-        inicio_horarioSegundaID += i + 1;
-        fim_horarioSegundaID = '#horario_final_segunda_';
-        fim_horarioSegundaID += i + 1;
-
-
-        let horarioSegundaInicioElem = document.querySelector(inicio_horarioSegundaID);
-        let timeNumbersInicio = convertTimeStringTonumbers(horarioSegundaInicioElem.value);
-        let horarioInicioSegunda = new Date();
-        horarioInicioSegunda.setHours(timeNumbersInicio[0], timeNumbersInicio[1]);
-
-        let horarioSegundaFimElem = document.querySelector(fim_horarioSegundaID);
-        let timeNumbersFim = convertTimeStringTonumbers(horarioSegundaFimElem.value);
-        let horarioFimSegunda = new Date();
-        horarioFimSegunda.setHours(timeNumbersFim[0], timeNumbersFim[1]);
-
-        horarios_inicioFim.push(horarioInicioSegunda);
-        horarios_inicioFim.push(horarioFimSegunda);
-        console.log(horarios_inicioFim);
-
-        horarios.segunda.push(horarios_inicioFim);
-    }
-
-    console.log('horarios' + horarios.segunda); */
 }
 
 function resetGlobalVariables() {
+    /* reseta objeto horarios */
     horarios.segunda = [];
     horarios.terca = [];
     horarios.quarta = [];
@@ -365,18 +314,16 @@ function resetGlobalVariables() {
 }
 
 function execTable() {
-
+    /* extrai dados do form e preenche a textArea */
     resetGlobalVariables();
     retrieveTime();
-    
     retrieveDate();
-
-    //apagar o que ja tava na text area
-
     printTable();
 }
 
 function showTimeForms(diaSemana) {
+    /* mostra ou oculta forms de horarios dependendo de quantos horarios atua
+    input: string de dia da semana */
     let num_horarios = document.getElementById("num_horarios_" + diaSemana).value;
 
     let horarios1 = document.getElementById("horarios_" + diaSemana + '1');

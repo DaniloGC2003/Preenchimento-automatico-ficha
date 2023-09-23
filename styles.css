@@ -13,6 +13,7 @@ body {
     background-size: 100vw 400vh;
 
     animation: changeBack 5s ease infinite alternate;
+    margin: 0;
 }
 
 p {
@@ -27,4 +28,13 @@ fieldset {
 
 .horarios_semana {
     display: none;
+}
+
+#title {
+    border: 0;
+    padding: 0;
+    text-align: center;
+    width: 100vw;
+    height: 500px;
+    background-color: aliceblue;
 }
