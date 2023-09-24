@@ -14,7 +14,9 @@
             <div id="title">
                 <h2>Preenchimento Automático Ficha de Atendimento</h2>
                 <h3>UTFPR</h3>
-                <p>Este projeto foi desenvolvido com o objetivo de auxiliar os monitores a preencherem suas fichas de frequência.</p>
+                <p>Este projeto foi desenvolvido com o objetivo de auxiliar os monitores a preencherem suas fichas de frequência. 
+                    Basta preencher o período referente à ficha de frequência, bem como os horários em que o monitor atua durante a semana.
+                </p>
             </div>
             
             <script src="./script.js"></script>
@@ -23,12 +25,12 @@
                 <div>
                     
                     <form>
-                        <div>
+                        <div id="data_inicial_container">
                             <label for="data_inicial">Essa ficha é referente à data de: </label>
                             <input type="date" id="data_inicial" value="2023-09-01">
                         </div>
 
-                        <div>
+                        <div id="data_final_container">
                             <label for="data_final">a: </label>
                             <input type="date" id="data_final" value="2023-09-20">
                         </div>
@@ -351,9 +353,7 @@
             <div id="horarios">
 
             </div>
-            <div id="horarios-textarea">
-                <textarea id="text-area" cols="100" rows="50"></textarea>
-            </div>
+            <textarea id="text-area"></textarea>
         </div>
     </main>
 </body>

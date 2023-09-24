@@ -6,12 +6,14 @@ let horarios = {
     quarta: [],
     quinta: [],
     sexta: [],
-    sabado: []
+    sabado: [],
+
+    total_horas: 0
 }
 
 let horarios_datas = {
-    data_inicio: new Date(),
-    data_fim: new Date()
+    data_inicio: new Date('April 5, 2003 00:00:00'),
+    data_fim: new Date('April 5, 2003 00:00:00')
 }
 
 function retrieveDate() {
@@ -89,6 +91,8 @@ function printTable() {
             let j = 0;
             for (j = 0; j < num_horarios; j++) {//coloca horarios
                 textAreaHorarios.value += getStringInicioFimHorario(current_date.getDay(), j);
+                horarios.total_horas += getTimeIntervalInHours(current_date.getDay(), j);
+
                 if (num_horarios - j >= 2)//nao printa ; depois do ultimo horario
                 {
                     textAreaHorarios.value += '; ';
@@ -101,6 +105,13 @@ function printTable() {
         current_date.setDate(current_date.getDate() + 1);
         i++;
     }
+    textAreaHorarios.value += '\ntotal de horas atuadas: ' + Math.round(horarios.total_horas * 100) / 100;
+    console.log('horas atuada: ' + horarios.total_horas);
+}
+
+function getTimeIntervalInHours(diaSemana, indexHorario)
+{
+    return Math.abs(horarios[Object.keys(horarios)[diaSemana]][indexHorario][0] - horarios[Object.keys(horarios)[diaSemana]][indexHorario][1]) / 36e5;//36^5 conversao de ms para horas
 }
 
 function getStringInicioFimHorario(diaSemana, indexHorario) {
@@ -285,12 +296,12 @@ function retrieveTime() {
 
             let horarioInicioElem = document.querySelector(inicio_horarioID);
             let timeNumbersInicio = convertTimeStringTonumbers(horarioInicioElem.value);//eh um vetor
-            let horarioInicio = new Date();
+            let horarioInicio = new Date('April 5, 2003 00:00:00');
             horarioInicio.setHours(timeNumbersInicio[0], timeNumbersInicio[1]);//cria obj data com as horas do vetor
 
             let horarioFimElem = document.querySelector(fim_horarioID);
             let timeNumbersFim = convertTimeStringTonumbers(horarioFimElem.value);
-            let horarioFim = new Date();
+            let horarioFim = new Date('April 5, 2003 00:00:00');
             horarioFim.setHours(timeNumbersFim[0], timeNumbersFim[1]);
 
             horarios_inicioFim.push(horarioInicio);
@@ -311,6 +322,8 @@ function resetGlobalVariables() {
     horarios.sexta = [];
     horarios.sabado = [];
     horarios.domingo = [];
+
+    horarios.total_horas = 0;
 }
 
 function execTable() {
@@ -352,3 +365,4 @@ function showTimeForms(diaSemana) {
         horarios3.setAttribute("style", "display:block;");
     }
 }
+
