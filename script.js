@@ -1,3 +1,4 @@
+let emptyFields = false;
 
 let horarios = {
     domingo: [],
@@ -18,20 +19,30 @@ let horarios_datas = {
 
 function retrieveDate() {
     /* preenche objeto horarios_datas com as datas contidas no form */
-    const data_inicial = document.querySelector('#data_inicial').value;//date object. Format YYYY-MM-DD
-    const data_inicial_DMY = convertDateToDMY(data_inicial);
+    const data_inicial = document.querySelector('#data_inicial').value;
+    const data_final = document.querySelector('#data_final').value;
+    console.log(data_final);
+    if(data_inicial.length == 0 || data_final.length == 0)
+    {
+        console.log('deu ruim');
+        emptyFields = true;
+    }
+    if (!emptyFields)
+    {
+        const data_inicial_DMY = convertDateToDMY(data_inicial);
 
 
-    let DateValues_inicial = getDateNumbers(data_inicial);
-    horarios_datas.data_inicio.setFullYear(DateValues_inicial.year, DateValues_inicial.month - 1, DateValues_inicial.day);//months indexed from 0
-
-
-    const data_final = document.querySelector('#data_final').value;//date object. Format YYYY-MM-DD
-    const data_final_DMY = convertDateToDMY(data_final);
-
-
-    let DateValues_final = getDateNumbers(data_final);
-    horarios_datas.data_fim.setFullYear(DateValues_final.year, DateValues_final.month - 1, DateValues_final.day);//months indexed from 0
+        let DateValues_inicial = getDateNumbers(data_inicial);
+        horarios_datas.data_inicio.setFullYear(DateValues_inicial.year, DateValues_inicial.month - 1, DateValues_inicial.day);//months indexed from 0
+    
+    
+        
+        const data_final_DMY = convertDateToDMY(data_final);
+    
+    
+        let DateValues_final = getDateNumbers(data_final);
+        horarios_datas.data_fim.setFullYear(DateValues_final.year, DateValues_final.month - 1, DateValues_final.day);//months indexed from 0
+    }
 }
 
 function printTable() {
@@ -236,7 +247,7 @@ function converttimeObjToStr(time) {
 
 function retrieveTime() {
     /* preenche objeto horarios com os horarios contidos no form */
-    for (let i = 0; i < 7; i++)
+    for (let i = 0; i < 7 && !emptyFields; i++)
     {
         let num_horarios;
         let inicio_horarioID = '';
@@ -283,9 +294,8 @@ function retrieveTime() {
                 break;
         }
 
-        for (let j = 0; j < num_horarios; j++)
+        for (let j = 0; j < num_horarios && !emptyFields; j++)
         {
-            console.log('comeco');
 
             inicio_horarioID = inicio_horarioID.slice(0, -1);
             inicio_horarioID += j + 1;
@@ -295,19 +305,30 @@ function retrieveTime() {
             let horarios_inicioFim = [];
 
             let horarioInicioElem = document.querySelector(inicio_horarioID);
-            let timeNumbersInicio = convertTimeStringTonumbers(horarioInicioElem.value);//eh um vetor
-            let horarioInicio = new Date('April 5, 2003 00:00:00');
-            horarioInicio.setHours(timeNumbersInicio[0], timeNumbersInicio[1]);//cria obj data com as horas do vetor
-
             let horarioFimElem = document.querySelector(fim_horarioID);
-            let timeNumbersFim = convertTimeStringTonumbers(horarioFimElem.value);
-            let horarioFim = new Date('April 5, 2003 00:00:00');
-            horarioFim.setHours(timeNumbersFim[0], timeNumbersFim[1]);
+            if (horarioInicioElem.value.length == 0 || horarioFimElem.value == 0)
+            {
+                emptyFields = true;
 
-            horarios_inicioFim.push(horarioInicio);
-            horarios_inicioFim.push(horarioFim);
-
-            horarios[Object.keys(horarios)[i]].push(horarios_inicioFim);
+                console.log('deu ruim no time');
+            }
+            if (!emptyFields)
+            {
+                let timeNumbersInicio = convertTimeStringTonumbers(horarioInicioElem.value);//eh um vetor
+                let horarioInicio = new Date('April 5, 2003 00:00:00');
+                horarioInicio.setHours(timeNumbersInicio[0], timeNumbersInicio[1]);//cria obj data com as horas do vetor
+    
+                
+                let timeNumbersFim = convertTimeStringTonumbers(horarioFimElem.value);
+                let horarioFim = new Date('April 5, 2003 00:00:00');
+                horarioFim.setHours(timeNumbersFim[0], timeNumbersFim[1]);
+    
+                horarios_inicioFim.push(horarioInicio);
+                horarios_inicioFim.push(horarioFim);
+    
+                horarios[Object.keys(horarios)[i]].push(horarios_inicioFim);
+            }
+            
         }
         
     }
@@ -324,16 +345,40 @@ function resetGlobalVariables() {
     horarios.domingo = [];
 
     horarios.total_horas = 0;
+    emptyFields = false;
 }
 
 function execTable() {
     /* extrai dados do form e preenche a textArea */
     resetGlobalVariables();
-    retrieveTime();
     retrieveDate();
-    printTable();
+    retrieveTime();
+    if (!emptyFields)
+        printTable();
+    else
+    {
+        alert('Por favor, preencha todos os campos do formulário');
+    }
 }
+function errorScreen()
+{
+    const form_table = document.getElementById('form-table-wrapper');
+    form_table.setAttribute("style", "display:none;");
 
+    const errorScreen = document.getElementById('error-message');
+    errorScreen.setAttribute("style", "display: block;");
+
+    
+}
+function returnHomeScreen()
+{
+    const form_table = document.getElementById('form-table-wrapper');
+    form_table.setAttribute("style", "display:block;");
+
+    const errorScreen = document.getElementById('error-message');
+    errorScreen.setAttribute("style", "display: none;");
+
+}
 function showTimeForms(diaSemana) {
     /* mostra ou oculta forms de horarios dependendo de quantos horarios atua
     input: string de dia da semana */
