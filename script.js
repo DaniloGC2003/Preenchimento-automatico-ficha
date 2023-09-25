@@ -250,48 +250,66 @@ function retrieveTime() {
     for (let i = 0; i < 7 && !emptyFields; i++)
     {
         let num_horarios;
+        let num_horarios_elem;
         let inicio_horarioID = '';
         let fim_horarioID = '';
 
         switch(i)
         {
             case 0:
-                num_horarios = document.getElementById("num_horarios_domingo").value;
+                num_horarios_elem = document.getElementById("num_horarios_domingo");
+                num_horarios = num_horarios_elem.value;
                 inicio_horarioID = '#horario_inicial_domingo_0';
                 fim_horarioID = '#horario_final_domingo_0';
+                console.log(typeof num_horarios_elem.value);
+                console.log(typeof num_horarios);
+                console.log(num_horarios);
                 break;
             case 1:
-                num_horarios = document.getElementById("num_horarios_segunda").value;
+                num_horarios_elem = document.getElementById("num_horarios_segunda");
+                num_horarios = num_horarios_elem.value;
                 inicio_horarioID = '#horario_inicial_segunda_0';
                 fim_horarioID = '#horario_final_segunda_0';
                 break;
             case 2:
-                num_horarios = document.getElementById("num_horarios_terca").value;
+                num_horarios_elem = document.getElementById("num_horarios_terca");
+                num_horarios = num_horarios_elem.value;
                 inicio_horarioID = '#horario_inicial_terca_0';
                 fim_horarioID = '#horario_final_terca_0';
                 break;
             case 3:
-                num_horarios = document.getElementById("num_horarios_quarta").value;
+                num_horarios_elem = document.getElementById("num_horarios_quarta");
+                num_horarios = num_horarios_elem.value;
                 inicio_horarioID = '#horario_inicial_quarta_0';
                 fim_horarioID = '#horario_final_quarta_0';
                 break;
             case 4:
-                num_horarios = document.getElementById("num_horarios_quinta").value;
+                num_horarios_elem = document.getElementById("num_horarios_quinta");
+                num_horarios = num_horarios_elem.value;
                 inicio_horarioID = '#horario_inicial_quinta_0';
                 fim_horarioID = '#horario_final_quinta_0';
                 break;
             case 5:
-                num_horarios = document.getElementById("num_horarios_sexta").value;
+                num_horarios_elem = document.getElementById("num_horarios_sexta");
+                num_horarios = num_horarios_elem.value;
                 inicio_horarioID = '#horario_inicial_sexta_0';
                 fim_horarioID = '#horario_final_sexta_0';
                 break;
             case 6:
-                num_horarios = document.getElementById("num_horarios_sabado").value;
+                num_horarios_elem = document.getElementById("num_horarios_sabado");
+                num_horarios = num_horarios_elem.value;
                 inicio_horarioID = '#horario_inicial_sabado_0';
                 fim_horarioID = '#horario_final_sabado_0';
                 break;
             default:
                 break;
+        }
+
+        if (num_horarios < 0 || num_horarios > 3)
+        {
+            num_horarios_elem.value = 0;
+            num_horarios = 0;
+            console.log('aq deu riom');
         }
 
         for (let j = 0; j < num_horarios && !emptyFields; j++)
