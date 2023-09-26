@@ -22,24 +22,22 @@ function retrieveDate() {
     const data_inicial = document.querySelector('#data_inicial').value;
     const data_final = document.querySelector('#data_final').value;
     console.log(data_final);
-    if(data_inicial.length == 0 || data_final.length == 0)
-    {
+    if (data_inicial.length == 0 || data_final.length == 0) {
         console.log('deu ruim');
         emptyFields = true;
     }
-    if (!emptyFields)
-    {
+    if (!emptyFields) {
         const data_inicial_DMY = convertDateToDMY(data_inicial);
 
 
         let DateValues_inicial = getDateNumbers(data_inicial);
         horarios_datas.data_inicio.setFullYear(DateValues_inicial.year, DateValues_inicial.month - 1, DateValues_inicial.day);//months indexed from 0
-    
-    
-        
+
+
+
         const data_final_DMY = convertDateToDMY(data_final);
-    
-    
+
+
         let DateValues_final = getDateNumbers(data_final);
         horarios_datas.data_fim.setFullYear(DateValues_final.year, DateValues_final.month - 1, DateValues_final.day);//months indexed from 0
     }
@@ -92,13 +90,11 @@ function printTable() {
             {
                 textAreaHorarios.value += 'DOMINGO';
             }
-            else
-            {
-                textAreaHorarios.value += 'SEM ATUAÇÃO';   
+            else {
+                textAreaHorarios.value += 'SEM ATUAÇÃO';
             }
         }
-        else
-        {
+        else {
             let j = 0;
             for (j = 0; j < num_horarios; j++) {//coloca horarios
                 textAreaHorarios.value += getStringInicioFimHorario(current_date.getDay(), j);
@@ -110,7 +106,7 @@ function printTable() {
                 }
             }
         }
-        
+
         textAreaHorarios.value += '\n';
 
         current_date.setDate(current_date.getDate() + 1);
@@ -120,8 +116,7 @@ function printTable() {
     console.log('horas atuada: ' + horarios.total_horas);
 }
 
-function getTimeIntervalInHours(diaSemana, indexHorario)
-{
+function getTimeIntervalInHours(diaSemana, indexHorario) {
     return Math.abs(horarios[Object.keys(horarios)[diaSemana]][indexHorario][0] - horarios[Object.keys(horarios)[diaSemana]][indexHorario][1]) / 36e5;//36^5 conversao de ms para horas
 }
 
@@ -247,15 +242,13 @@ function converttimeObjToStr(time) {
 
 function retrieveTime() {
     /* preenche objeto horarios com os horarios contidos no form */
-    for (let i = 0; i < 7 && !emptyFields; i++)
-    {
+    for (let i = 0; i < 7 && !emptyFields; i++) {
         let num_horarios;
         let num_horarios_elem;
         let inicio_horarioID = '';
         let fim_horarioID = '';
 
-        switch(i)
-        {
+        switch (i) {
             case 0:
                 num_horarios_elem = document.getElementById("num_horarios_domingo");
                 num_horarios = num_horarios_elem.value;
@@ -305,15 +298,13 @@ function retrieveTime() {
                 break;
         }
 
-        if (num_horarios < 0 || num_horarios > 3)
-        {
+        if (num_horarios < 0 || num_horarios > 3) {
             num_horarios_elem.value = 0;
             num_horarios = 0;
             console.log('aq deu riom');
         }
 
-        for (let j = 0; j < num_horarios && !emptyFields; j++)
-        {
+        for (let j = 0; j < num_horarios && !emptyFields; j++) {
 
             inicio_horarioID = inicio_horarioID.slice(0, -1);
             inicio_horarioID += j + 1;
@@ -324,31 +315,29 @@ function retrieveTime() {
 
             let horarioInicioElem = document.querySelector(inicio_horarioID);
             let horarioFimElem = document.querySelector(fim_horarioID);
-            if (horarioInicioElem.value.length == 0 || horarioFimElem.value == 0)
-            {
+            if (horarioInicioElem.value.length == 0 || horarioFimElem.value == 0) {
                 emptyFields = true;
 
                 console.log('deu ruim no time');
             }
-            if (!emptyFields)
-            {
+            if (!emptyFields) {
                 let timeNumbersInicio = convertTimeStringTonumbers(horarioInicioElem.value);//eh um vetor
                 let horarioInicio = new Date('April 5, 2003 00:00:00');
                 horarioInicio.setHours(timeNumbersInicio[0], timeNumbersInicio[1]);//cria obj data com as horas do vetor
-    
-                
+
+
                 let timeNumbersFim = convertTimeStringTonumbers(horarioFimElem.value);
                 let horarioFim = new Date('April 5, 2003 00:00:00');
                 horarioFim.setHours(timeNumbersFim[0], timeNumbersFim[1]);
-    
+
                 horarios_inicioFim.push(horarioInicio);
                 horarios_inicioFim.push(horarioFim);
-    
+
                 horarios[Object.keys(horarios)[i]].push(horarios_inicioFim);
             }
-            
+
         }
-        
+
     }
 }
 
@@ -368,28 +357,29 @@ function resetGlobalVariables() {
 
 function execTable() {
     /* extrai dados do form e preenche a textArea */
+    let textArea = document.getElementById("oi")
+    textArea.style.padding = "0px";
+    textArea.style.transition = "padding 1s ease";
+
     resetGlobalVariables();
     retrieveDate();
     retrieveTime();
     if (!emptyFields)
         printTable();
-    else
-    {
+    else {
         alert('Por favor, preencha todos os campos do formulário');
     }
 }
-function errorScreen()
-{
+function errorScreen() {
     const form_table = document.getElementById('form-table-wrapper');
     form_table.setAttribute("style", "display:none;");
 
     const errorScreen = document.getElementById('error-message');
     errorScreen.setAttribute("style", "display: block;");
 
-    
+
 }
-function returnHomeScreen()
-{
+function returnHomeScreen() {
     const form_table = document.getElementById('form-table-wrapper');
     form_table.setAttribute("style", "display:block;");
 
