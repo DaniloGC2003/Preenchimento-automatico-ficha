@@ -26,6 +26,7 @@
                     Basta preencher o período referente à ficha de frequência, bem como os horários em que o monitor
                     atua durante a semana.
                 </p>
+
             </div>
 
             <script src="./script.js"></script>
@@ -370,10 +371,13 @@
 
             <div id="button">
                 <button id="update" onclick="execTable()" class="gerar">Gerar horários</button>
+                <button id="update" onclick="copyToClipboard()" class="gerar">Copiar</button>
             </div>
+
             <div id="horarios">
 
             </div>
+
             <div class="text" id="oi">
                 <textarea id="text-area"></textarea>
             </div>

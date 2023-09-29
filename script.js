@@ -419,3 +419,8 @@ function showTimeForms(diaSemana) {
     }
 }
 
+function copyToClipboard() {
+    let texto = document.querySelector('#text-area');
+    texto.select();
+    document.execCommand('copy');
+}
