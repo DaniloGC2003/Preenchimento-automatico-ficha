@@ -101,10 +101,19 @@
                             <div id="segunda" class="dia">
                                 <h3>Segunda-feira:</h3>
                                 <div class="quantidade">
-                                    <label for="num_horarios_segunda">Quantidade de vezes que você atua neste dia:
+                                    <!-- <label for="num_horarios_segunda">Quantidade de vezes que você atua neste dia:
                                     </label>
                                     <input type="number" id="num_horarios_segunda" min="0" max="3" value="0"
-                                        onclick="showTimeForms('segunda')" class="inputData">
+                                        onclick="showTimeForms('segunda')" class="inputData"> -->
+
+                                    <label for="num_horarios_segunda">Quantidade de vezes que você atua neste dia:
+                                    </label>
+                                    <select name="num_horarios_segunda" id="num_horarios_segunda" onclick="testando()">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
                                 </div>
                                 <div class="horarios_semana" id="horarios_segunda1">
                                     <div>

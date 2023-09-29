@@ -391,6 +391,7 @@ function showTimeForms(diaSemana) {
     /* mostra ou oculta forms de horarios dependendo de quantos horarios atua
     input: string de dia da semana */
     let num_horarios = document.getElementById("num_horarios_" + diaSemana).value;
+    console.log(num_horarios);
 
     let horarios1 = document.getElementById("horarios_" + diaSemana + '1');
     let horarios2 = document.getElementById("horarios_" + diaSemana + '2');
@@ -423,4 +424,43 @@ function copyToClipboard() {
     let texto = document.querySelector('#text-area');
     texto.select();
     document.execCommand('copy');
+}
+
+function testando() {
+    console.log('weima');
+
+    let num_horarios = document.getElementById("num_horarios_segunda");
+
+    var text = num_horarios.options[num_horarios.selectedIndex].text;
+    console.log(text);
+    console.log(typeof text);
+    textNumber = parseInt(text);
+    console.log(textNumber);
+    console.log(typeof textNumber);
+
+    let horarios1 = document.getElementById("horarios_segunda" + '1');
+    let horarios2 = document.getElementById("horarios_segunda" + '2');
+    let horarios3 = document.getElementById("horarios_segunda" + '3');
+
+    //console.log(num_horarios);
+    if (textNumber == 0) {
+        horarios1.setAttribute("style", "display:none;");
+        horarios2.setAttribute("style", "display:none;");
+        horarios3.setAttribute("style", "display:none;");
+    }
+    else if (textNumber == 1) {
+        horarios1.setAttribute("style", "display:block;");
+        horarios2.setAttribute("style", "display:none;");
+        horarios3.setAttribute("style", "display:none;");
+    }
+    else if (textNumber == 2) {
+        horarios1.setAttribute("style", "display:block;");
+        horarios2.setAttribute("style", "display:block;");
+        horarios3.setAttribute("style", "display:none;");
+    }
+    else if (textNumber == 3) {
+        horarios1.setAttribute("style", "display:block;");
+        horarios2.setAttribute("style", "display:block;");
+        horarios3.setAttribute("style", "display:block;");
+    }
 }
