@@ -426,10 +426,10 @@ function copyToClipboard() {
     document.execCommand('copy');
 }
 
-function testando() {
+function testando(diaSemana) {
     console.log('weima');
 
-    let num_horarios = document.getElementById("num_horarios_segunda");
+    let num_horarios = document.getElementById("num_horarios_" + diaSemana);
 
     var text = num_horarios.options[num_horarios.selectedIndex].text;
     console.log(text);
@@ -438,9 +438,9 @@ function testando() {
     console.log(textNumber);
     console.log(typeof textNumber);
 
-    let horarios1 = document.getElementById("horarios_segunda" + '1');
-    let horarios2 = document.getElementById("horarios_segunda" + '2');
-    let horarios3 = document.getElementById("horarios_segunda" + '3');
+    let horarios1 = document.getElementById("horarios_" + diaSemana + '1');
+    let horarios2 = document.getElementById("horarios_" + diaSemana + '2');
+    let horarios3 = document.getElementById("horarios_" + diaSemana + '3');
 
     //console.log(num_horarios);
     if (textNumber == 0) {
