@@ -367,24 +367,27 @@ function execTable() {
     if (!emptyFields)
         printTable();
     else {
-        alert('Por favor, preencha todos os campos do formulário');
+        console.log('algo deu errado');
+        errorScreen();
+        //alert('Por favor, preencha todos os campos do formulário');
+
     }
 }
 function errorScreen() {
-    const form_table = document.getElementById('form-table-wrapper');
-    form_table.setAttribute("style", "display:none;");
+    let video = document.getElementById('video_error');
+    let screen = document.getElementById('error_screen');
 
-    const errorScreen = document.getElementById('error-message');
-    errorScreen.setAttribute("style", "display: block;");
+    video.currentTime = 0;
 
-
+    screen.setAttribute("style", "display:block;");
+    video.load();
+    video.play();
 }
-function returnHomeScreen() {
-    const form_table = document.getElementById('form-table-wrapper');
-    form_table.setAttribute("style", "display:block;");
 
-    const errorScreen = document.getElementById('error-message');
-    errorScreen.setAttribute("style", "display: none;");
+function returnHomeScreen() {
+    let screen = document.getElementById('error_screen');
+    screen.setAttribute("style", "display:none;");
+
 
 }
 function showTimeForms(diaSemana) {

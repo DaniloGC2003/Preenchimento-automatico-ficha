@@ -20,9 +20,30 @@ body {
 
     padding: 20px;
 
+
     /*   margin: 0px;
     padding: 0px;
     border: 0px; */
+}
+
+#error_screen {
+    width: auto;
+    height: auto;
+    background-color: rgb(177, 177, 177);
+    position: fixed;
+    margin: auto;
+    display: none;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+#video_error {
+    padding: 10px;
 }
 
 input {
@@ -151,10 +172,11 @@ h3 {
     width: 500px;
     height: 400px;
     padding: 0px 0px 400px 0px;
+
 }
 
 #text-area {
-    width: 100%;
+    width: 80vw;
     min-height: 100px;
     height: 100%;
     padding: 10px;
