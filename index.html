@@ -424,6 +424,17 @@
 
                 </div>
             </fieldset>
+            <div>
+                <p>Especifique aqui os dias que são feriados</p>
+            </div>
+            <div class="feriados" id="feriados">
+                <label for="data_feriado">Feriado em: </label>
+                <input type="date" id="data_feriado" value="2023-04-05" class="inputData">
+                <button id="update" class="gerar" onclick="addFeriado()">Enter</button>
+            </div>
+            <div id="lista-feriados">
+                <p>Feriados:</p>
+            </div>
 
             <div id="button">
                 <button id="update" onclick="execTable()" class="gerar">Gerar horários</button>
@@ -437,16 +448,9 @@
             <div class="text" id="oi">
                 <textarea id="text-area"></textarea>
             </div>
-        </div>
 
-        <script async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8378822717288808"
-            crossorigin="anonymous"></script>
-        <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-fb+5w+4e-db+86"
-            data-ad-client="ca-pub-8378822717288808" data-ad-slot="7828199809"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+
+        </div>
     </main>
 </body>
 

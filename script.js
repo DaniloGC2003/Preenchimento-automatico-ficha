@@ -17,6 +17,8 @@ let horarios_datas = {
     data_fim: new Date('April 5, 2003 00:00:00')
 }
 
+let feriados = [];
+
 function retrieveDate() {
     /* preenche objeto horarios_datas com as datas contidas no form */
     const data_inicial = document.querySelector('#data_inicial').value;
@@ -59,53 +61,65 @@ function printTable() {
 
         textAreaHorarios.value += dataString + '; ';//add day of the year
 
-        let num_horarios;
-        switch (current_date.getDay()) {
-            case 0:
-                num_horarios = document.getElementById("num_horarios_domingo").value;
-                break;
-            case 1:
-                num_horarios = document.getElementById("num_horarios_segunda").value;
-                break;
-            case 2:
-                num_horarios = document.getElementById("num_horarios_terca").value;
-                break;
-            case 3:
-                num_horarios = document.getElementById("num_horarios_quarta").value;
-                break;
-            case 4:
-                num_horarios = document.getElementById("num_horarios_quinta").value;
-                break;
-            case 5:
-                num_horarios = document.getElementById("num_horarios_sexta").value;
-                break;
-            case 6:
-                num_horarios = document.getElementById("num_horarios_sabado").value;
-                break;
+        let diaFeriado = false;
+        for (let k = 0; k < feriados.length; k++) {
+            if (current_date.getTime() == feriados[k].getTime()) {
+                diaFeriado = true;
+            }
         }
+        if (!diaFeriado) {
+            let num_horarios;
+            switch (current_date.getDay()) {
+                case 0:
+                    num_horarios = document.getElementById("num_horarios_domingo").value;
+                    break;
+                case 1:
+                    num_horarios = document.getElementById("num_horarios_segunda").value;
+                    break;
+                case 2:
+                    num_horarios = document.getElementById("num_horarios_terca").value;
+                    break;
+                case 3:
+                    num_horarios = document.getElementById("num_horarios_quarta").value;
+                    break;
+                case 4:
+                    num_horarios = document.getElementById("num_horarios_quinta").value;
+                    break;
+                case 5:
+                    num_horarios = document.getElementById("num_horarios_sexta").value;
+                    break;
+                case 6:
+                    num_horarios = document.getElementById("num_horarios_sabado").value;
+                    break;
+            }
 
-        if (num_horarios == 0)//nao atua nesse dia
-        {
-            if (current_date.getDay() == 0)//domingo
+            if (num_horarios == 0)//nao atua nesse dia
             {
-                textAreaHorarios.value += 'DOMINGO';
+                if (current_date.getDay() == 0)//domingo
+                {
+                    textAreaHorarios.value += 'DOMINGO';
+                }
+                else {
+                    textAreaHorarios.value += 'SEM ATUAÇÃO';
+                }
             }
             else {
-                textAreaHorarios.value += 'SEM ATUAÇÃO';
-            }
-        }
-        else {
-            let j = 0;
-            for (j = 0; j < num_horarios; j++) {//coloca horarios
-                textAreaHorarios.value += getStringInicioFimHorario(current_date.getDay(), j);
-                horarios.total_horas += getTimeIntervalInHours(current_date.getDay(), j);
+                let j = 0;
+                for (j = 0; j < num_horarios; j++) {//coloca horarios
+                    textAreaHorarios.value += getStringInicioFimHorario(current_date.getDay(), j);
+                    horarios.total_horas += getTimeIntervalInHours(current_date.getDay(), j);
 
-                if (num_horarios - j >= 2)//nao printa ; depois do ultimo horario
-                {
-                    textAreaHorarios.value += '; ';
+                    if (num_horarios - j >= 2)//nao printa ; depois do ultimo horario
+                    {
+                        textAreaHorarios.value += '; ';
+                    }
                 }
             }
         }
+        else {
+            textAreaHorarios.value += 'FERIADO';
+        }
+
 
         textAreaHorarios.value += '\n';
 
@@ -466,4 +480,34 @@ function testando(diaSemana) {
         horarios2.setAttribute("style", "display:block;");
         horarios3.setAttribute("style", "display:block;");
     }
+}
+
+function addFeriado() {
+    let dataFeriado = document.getElementById('data_feriado');
+    let dataValues = getDateNumbers(dataFeriado.value);
+
+    let feriadoOBJ = new Date('April 5, 2003 00:00:00');
+    let jaContem = false
+    feriadoOBJ.setFullYear(dataValues.year, dataValues.month - 1, dataValues.day);
+    for (let i = 0; i < feriados.length; i++) {
+        if (feriadoOBJ.getTime() == feriados[i].getTime()) {
+            jaContem = true;
+        }
+    }
+    if (!jaContem) {
+        feriados.push(feriadoOBJ);
+        let lista_feriados = document.getElementById('lista-feriados');
+        let feriadoElement = document.createElement("p");
+        feriadoElement.innerHTML = convertDateOBJtoDMYstring(feriadoOBJ);
+        lista_feriados.appendChild(feriadoElement);
+    }
+    console.log(feriados);
+
+
+}
+
+function mostraFeriados() {
+    let lista_feriados = document.getElementById('lista-feriados');
+
+
 }
